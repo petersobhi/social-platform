@@ -3,3 +3,4 @@ psycopg2-binary>=2.8
 dj-rest-auth
 django-allauth[with_social]
 djangorestframework-simplejwt
+drf-yasg

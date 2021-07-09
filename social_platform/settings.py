@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,5 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+SITE_ID = 1
