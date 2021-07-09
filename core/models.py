@@ -16,6 +16,7 @@ class Post(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     body = models.CharField(max_length=360)
     attachment = models.FileField(upload_to=attachment_directory_path)
+    likes_count = models.BigIntegerField(default=0) # Better performance, using a signal (better than post.likes.count())
 
 
 class Comment(TimeStampedModel):
