@@ -9,6 +9,7 @@ router.register(r'posts', views.PostViewSet)
 
 posts_router = routers.NestedSimpleRouter(router, r'posts', lookup='post')
 posts_router.register(r'comments', views.CommentViewSet, basename='post-comments')
+posts_router.register(r'likes', views.LikeViewSet, basename='post-likes')
 
 urlpatterns = [
     path('', include(router.urls)),
