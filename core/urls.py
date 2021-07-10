@@ -14,4 +14,5 @@ posts_router.register(r'likes', views.LikeViewSet, basename='post-likes')
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(posts_router.urls)),
+    path('users', views.UserListView.as_view())
 ]
