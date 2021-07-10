@@ -7,7 +7,7 @@ from rest_framework.views import Response
 from rest_framework.generics import ListAPIView
 
 from core.models import Post, Comment, Like
-from core.serializers import PostSerializer, PostAttachmentSerializer, CommentSerializer, LikeSerializer, UserSerializer
+from core.serializers import PostSerializer, PostAttachmentSerializer, CommentSerializer, LikeSerializer
 from core.permissions import IsOwner
 
 User = get_user_model()
@@ -72,9 +72,3 @@ class LikeViewSet(mixins.CreateModelMixin,
             serializer.save(user=self.request.user, post=post)
         except IntegrityError:  # TODO move this validation to serializer
             return Response("Only one like is allowed per post", status=400)
-
-
-class UserListView(ListAPIView):
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()

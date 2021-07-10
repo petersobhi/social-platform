@@ -1,8 +1,15 @@
+from django.urls import path, include
+
 from rest_framework.routers import DefaultRouter
 
-from .views import FriendViewSet, FriendshipRequestViewSet
+from .views import UserListView, UserProfileView, FriendViewSet, FriendshipRequestViewSet
 
 router = DefaultRouter()
 router.register(r'friends', FriendViewSet, basename='friends')
 router.register(r'friends/requests', FriendshipRequestViewSet, basename='friendrequests')
-urlpatterns = router.urls
+
+urlpatterns = [
+    path('users', UserListView.as_view()),
+    path('users/<int:pk>', UserProfileView.as_view()),
+    path('', include(router.urls)),
+]

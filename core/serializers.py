@@ -33,9 +33,3 @@ class LikeSerializer(serializers.ModelSerializer):
         model = Like
         fields = '__all__'
         read_only_fields = ['user', 'post']
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username']

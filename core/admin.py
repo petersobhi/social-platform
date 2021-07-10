@@ -12,6 +12,7 @@ class PostAdmin(admin.ModelAdmin):
     def has_change_permission(self, request):
         return False
 
+
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('body', 'post', 'user')
     list_display_links = None  # Disable editing links

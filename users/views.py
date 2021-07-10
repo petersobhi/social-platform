@@ -5,9 +5,24 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import status, viewsets, decorators, permissions
 from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from friendship.models import Friend, FriendshipRequest
 
-from .serializers import UserSerializer, FriendshipRequestSerializer
+from .serializers import UserSerializer, UserProfileSerializer, FriendshipRequestSerializer
+
+User = get_user_model()
+
+
+class UserListView(ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+
+
+class UserProfileView(RetrieveAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.prefetch_related('post_set')
 
 
 class FriendViewSet(viewsets.ViewSet):
@@ -30,7 +45,7 @@ class FriendViewSet(viewsets.ViewSet):
         """
         friend_obj = Friend.objects.add_friend(
             request.user,  # The sender
-            get_object_or_404(get_user_model(), pk=request.data['user_id']),  # The recipient
+            get_object_or_404(User, pk=request.data['user_id']),  # The recipient
             message=request.data.get('message', '')
         )
 
