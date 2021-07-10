@@ -5,3 +5,4 @@ django-allauth[with_social]
 djangorestframework-simplejwt
 drf-yasg
 drf-nested-routers
+django-friendship

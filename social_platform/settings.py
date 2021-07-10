@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     'drf_yasg',
+    'friendship',
 
-    'core'
+    'core',
+    'users'
 ]
 
 MIDDLEWARE = [
